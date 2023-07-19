@@ -19,16 +19,16 @@ class ProductPage(BasePage):
         confirmation_alert = self.browser.find_element(*ProductPageLocators.CONFIRMATION_ALERT)
         text_from_confirmation_alert = confirmation_alert.text
         expected_name = self.get_product_name()
-        assert expected_name in text_from_confirmation_alert, f"""Product name is absent/is different in the " \
-                                                              "confirmation alert after product is added to the " \
-                                                              "basket. Expected: '{expected_name}', The text from " \
-                                                              "alert was: {text_from_confirmation_alert}"""
+        assert expected_name == text_from_confirmation_alert, f"""Product name is absent/is different in the 
+                                                              confirmation alert after product is added to the 
+                                                              basket. Expected: '{expected_name}', The text from 
+                                                              alert was: {text_from_confirmation_alert}"""
 
     def should_be_price_details(self):
         price_alert = self.browser.find_element(*ProductPageLocators.PRICE_ALERT)
         text_from_price_alert = price_alert.text
         expected_price = self.get_product_price()
-        assert expected_price in text_from_price_alert, f"""Product price is absent/is different in the " \
-                                                            "confirmation alert after product is added to the " \
-                                                            "basket. Expected: '{expected_price}', The text from " \
-                                                            "alert was: {text_from_price_alert}"""
+        assert expected_price in text_from_price_alert, f"""Product price is absent/is different in the 
+                                                            confirmation alert after product is added to the 
+                                                            basket. Expected: '{expected_price}', The text from 
+                                                            alert was: {text_from_price_alert}"""

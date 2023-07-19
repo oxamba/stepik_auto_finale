@@ -17,7 +17,3 @@ class ProductPageLocators:
     CONFIRMATION_ALERT = (By.CSS_SELECTOR, "#messages .alert-success:nth-child(1) strong")
     PRICE_ALERT = (By.CSS_SELECTOR, "#messages .alert-info p:nth-child(1)")
 
-
-    #
-    # alert-success
-
