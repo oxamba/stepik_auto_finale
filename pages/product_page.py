@@ -32,3 +32,12 @@ class ProductPage(BasePage):
                                                             confirmation alert after product is added to the 
                                                             basket. Expected: '{expected_price}', The text from 
                                                             alert was: {text_from_price_alert}"""
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.CONFIRMATION_ALERT), \
+            "Success message is presented, but should not be"
+
+    def is_success_message_disappeared(self):
+        assert self.is_element_present(*ProductPageLocators.CONFIRMATION_ALERT)
+        assert self.is_disappeared(*ProductPageLocators.CONFIRMATION_ALERT, timeout=10), \
+            "Success message should disappear, but os still there"

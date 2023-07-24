@@ -2,6 +2,7 @@ from selenium.webdriver.chrome import webdriver
 from selenium.webdriver.chrome.options import Options
 import pytest
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 
 ACCEPTED_LANGUAGES = ['ar', 'ca', 'cs', 'da', 'de', 'en-gb', 'en', 'el', 'es', 'fi', 'fr', 'it',
                       'ko', 'nl', 'pl', 'pt', 'pt-br', 'ro', 'ru', 'sk', 'uk', 'zh-hans']
@@ -18,7 +19,7 @@ def browser(request):
     if language in ACCEPTED_LANGUAGES:
         options = Options()
         options.add_experimental_option('prefs', {'intl.accept_languages': language})
-        browser = webdriver.Chrome(options=options)
+        browser = webdriver.Chrome("/chromedriver", options=options)
         print(f"{language} was selected")
     else:
         raise pytest.UsageError(
