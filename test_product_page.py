@@ -1,8 +1,37 @@
 import pytest
+from faker import Faker
 from pages.basket_page import BasketPage
 from .pages.product_page import ProductPage
 from .pages.login_page import LoginPage
 from .pages.locators import ProductPageLocators
+from .pages.locators import LoginPageLocators
+
+
+class TestUserAddToBasketFromProductPage:
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        fake = Faker()
+        email = fake.email()
+        password = fake.password()
+
+        registration_page = LoginPage(browser, LoginPageLocators.LOGIN_LINK)
+        registration_page.open()
+        registration_page.should_be_login_page()
+
+        registration_page.register_new_user(email, password)
+        registration_page.should_be_authorized_user()
+
+    def test_user_cant_see_success_message(self, browser):
+        page = ProductPage(browser, ProductPageLocators.PRODUCT_LINK)
+        page.open()
+        page.should_not_be_success_message()
+
+    def test_user_can_add_product_to_basket(self, browser):
+        page = ProductPage(browser, ProductPageLocators.PRODUCT_LINK)
+        page.open()
+        page.add_product()
+        page.should_be_confirmation_message()
+        page.should_be_price_details()
 
 
 @pytest.mark.parametrize("promo", [0, 1, 2, 3, 4, 5, 6, 8, 9, pytest.param(7, marks=pytest.mark.xfail(reason="some bug"))])
