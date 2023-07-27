@@ -34,5 +34,3 @@ class BasketPageLocators:
     BASKET_HEADER = (By.CSS_SELECTOR, ".page-header")
     BASKET_ITEMS = (By.CSS_SELECTOR, ".basket-items")
     EMPTY_BASKET_TEXT = (By.CSS_SELECTOR, "#content_inner p")
-
-

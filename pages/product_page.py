@@ -3,6 +3,10 @@ from .locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
+    def add_product(self):
+        add_to_basket_btn = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET)
+        add_to_basket_btn.click()
+
     def get_product_name(self):
         product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME)
         return product_name.text
@@ -11,9 +15,10 @@ class ProductPage(BasePage):
         product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE)
         return product_price.text
 
-    def add_product(self):
-        add_to_basket_btn = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET)
-        add_to_basket_btn.click()
+    def is_success_message_disappeared(self):
+        assert self.is_element_present(*ProductPageLocators.CONFIRMATION_ALERT)
+        assert self.is_disappeared(*ProductPageLocators.CONFIRMATION_ALERT, timeout=10), \
+            "Success message should disappear, but os still there"
 
     def should_be_confirmation_message(self):
         confirmation_alert = self.browser.find_element(*ProductPageLocators.CONFIRMATION_ALERT)
@@ -36,8 +41,3 @@ class ProductPage(BasePage):
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.CONFIRMATION_ALERT), \
             "Success message is presented, but should not be"
-
-    def is_success_message_disappeared(self):
-        assert self.is_element_present(*ProductPageLocators.CONFIRMATION_ALERT)
-        assert self.is_disappeared(*ProductPageLocators.CONFIRMATION_ALERT, timeout=10), \
-            "Success message should disappear, but os still there"
