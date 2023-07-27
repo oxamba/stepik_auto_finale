@@ -5,8 +5,10 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
 
-ACCEPTED_LANGUAGES = ['ar', 'ca', 'cs', 'da', 'de', 'en-gb', 'en', 'el', 'es', 'fi', 'fr', 'it',
-                      'ko', 'nl', 'pl', 'pt', 'pt-br', 'ro', 'ru', 'sk', 'uk', 'zh-hans']
+ACCEPTED_LANGUAGES = [
+    'ar', 'ca', 'cs', 'da', 'de', 'en-gb', 'en', 'el', 'es', 'fi', 'fr', 'it',
+    'ko', 'nl', 'pl', 'pt', 'pt-br', 'ro', 'ru', 'sk', 'uk', 'zh-hans'
+]
 
 
 def pytest_addoption(parser):
