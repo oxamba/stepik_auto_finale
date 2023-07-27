@@ -1,6 +1,6 @@
 import pytest
 from faker import Faker
-from pages.basket_page import BasketPage
+from .pages.basket_page import BasketPage
 from .pages.product_page import ProductPage
 from .pages.login_page import LoginPage
 from .pages.locators import ProductPageLocators
