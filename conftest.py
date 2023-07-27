@@ -19,7 +19,8 @@ def browser(request):
     if language in ACCEPTED_LANGUAGES:
         options = Options()
         options.add_experimental_option('prefs', {'intl.accept_languages': language})
-        browser = webdriver.Chrome("/chromedriver", options=options)
+        #         browser = webdriver.Chrome("/chromedriver", options=options)
+        browser = webdriver.Chrome(options=options)
         print(f"{language} was selected")
     else:
         raise pytest.UsageError(
